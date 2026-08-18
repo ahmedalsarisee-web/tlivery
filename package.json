@@ -1,0 +1,17 @@
+{
+  "name": "tlivery",
+  "private": true,
+  "scripts": {
+    "firebase:login": "firebase-tools login",
+    "firebase:bootstrap": "node scripts/bootstrap-firebase.mjs",
+    "firebase:migrate": "node scripts/migrate-wasel-to-tlivery.mjs",
+    "firebase:migrate-auth": "node scripts/migrate-auth-wasel-to-tlivery.mjs",
+    "firebase:deploy": "npm --prefix functions run build && firebase-tools deploy --project tlivery-87ad0",
+    "mobile": "npm --prefix TliveryMobile start",
+    "web": "npm --prefix TliveryWebPlatform run dev"
+  },
+  "devDependencies": {
+    "firebase-admin": "^13.4.0",
+    "firebase-tools": "^14.11.2"
+  }
+}

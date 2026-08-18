@@ -1,0 +1,31 @@
+{
+  "name": "tlivery-functions",
+  "private": true,
+  "main": "lib/src/index.js",
+  "engines": {
+    "node": "22"
+  },
+  "scripts": {
+    "build": "node -e \"require('fs').rmSync('lib',{recursive:true,force:true})\" && tsc",
+    "lint": "eslint src test",
+    "test": "npm run build && node --test lib/test/helpers.test.js",
+    "test:rules:unit": "npm run build && node --test lib/test/firestore.rules.test.js",
+    "test:rules": "firebase emulators:exec --only firestore --project tlivery-87ad0 --config ../firebase.json \"npm run test:rules:unit\"",
+    "bootstrap:super-admin": "npm run build && node lib/src/scripts/bootstrapSuperAdmin.js",
+    "deploy": "npm run build && firebase deploy --only functions --project tlivery-87ad0 --config ../firebase.json"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.4.0",
+    "firebase-functions": "^6.4.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "@firebase/rules-unit-testing": "^5.0.1",
+    "@types/node": "^24.0.15",
+    "eslint": "^9.31.0",
+    "firebase": "^12.16.0",
+    "firebase-tools": "^14.11.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0"
+  }
+}

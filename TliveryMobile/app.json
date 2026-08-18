@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "Tlivery",
+    "slug": "tlivery",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/images/wasel/wasel_app_icon.png",
+    "scheme": "tlivery",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tlivery.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Tlivery uses your location to share live delivery tracking.",
+        "NSCameraUsageDescription": "Tlivery uses the camera to capture driver documents.",
+        "NSPhotoLibraryUsageDescription": "Tlivery uses your photos for driver documents."
+      }
+    },
+    "android": {
+      "package": "com.tlivery.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/images/wasel/wasel_app_icon.png",
+        "backgroundColor": "#0B1B3A"
+      },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "CAMERA"
+      ]
+    },
+    "plugins": [
+      "expo-font",
+      "expo-localization",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Tlivery uses your location to share live delivery tracking."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Tlivery uses your photos for driver documents.",
+          "cameraPermission": "Tlivery uses the camera to capture driver documents."
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./src/assets/images/wasel/wasel_logo_symbol.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#0B1B3A"
+        }
+      ],
+      "expo-status-bar"
+    ]
+  }
+}

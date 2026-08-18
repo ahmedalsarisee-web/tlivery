@@ -1,0 +1,8 @@
+lib/
+node_modules/
+*.log
+firebase-debug.*
+ui-debug.*
+.env
+.env.*
+!.env*.example

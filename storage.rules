@@ -1,0 +1,32 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function tokenCompanyId() {
+      return request.auth.token.companyId;
+    }
+
+    function isCompanyMember(companyId) {
+      return signedIn() && tokenCompanyId() == companyId;
+    }
+
+    function isDriverOwner(driverId) {
+      return signedIn() && request.auth.uid == driverId;
+    }
+
+    function isImageUnder2Mb() {
+      return request.resource.size < 2 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    // Company-scoped driver media (avatar + document photos).
+    match /companies/{companyId}/drivers/{driverId}/{allPaths=**} {
+      allow read: if isCompanyMember(companyId) || isDriverOwner(driverId);
+      allow write: if (isCompanyMember(companyId) || isDriverOwner(driverId))
+        && isImageUnder2Mb();
+    }
+  }
+}
